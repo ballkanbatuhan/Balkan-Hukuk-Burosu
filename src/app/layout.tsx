@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Newsreader, Outfit } from "next/font/google";
+import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { site } from "@/lib/content";
 import "./globals.css";
 
-const sans = Outfit({
+const sans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  variable: "--font-outfit",
-  weight: ["300", "400", "500", "600"],
+  variable: "--font-source-sans",
+  weight: ["400", "500", "600"],
 });
 
-const serif = Newsreader({
+const serif = Source_Serif_4({
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  variable: "--font-newsreader",
+  variable: "--font-source-serif",
   style: ["normal", "italic"],
   weight: ["400", "500", "600"],
 });

@@ -26,7 +26,7 @@ export function TestimonialCarousel({ items }: TestimonialCarouselProps) {
   return (
     <figure>
       <blockquote>
-        <p className="font-serif text-2xl leading-snug text-ink md:text-[1.7rem]">
+        <p className="quote text-ink">
           {item.quote}
         </p>
       </blockquote>

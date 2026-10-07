@@ -29,7 +29,7 @@ export default function HomePage() {
       <Publication />
       <Insights />
       <Testimonials />
-      <Contact />
+      <Contact layout="home" />
       <FinalCta />
     </>
   );

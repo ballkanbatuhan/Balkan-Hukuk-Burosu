@@ -16,9 +16,11 @@ export default function FounderPage() {
       title={founder.name}
       description="Balkan Hukuk Bürosu’nun kurucusu."
     >
-      <div className="space-y-6 text-base leading-8 text-ink-soft">
+      <div className="space-y-6">
         {founder.profile.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+          <p key={paragraph} className="lede">
+            {paragraph}
+          </p>
         ))}
       </div>
     </SitePage>

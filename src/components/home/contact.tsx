@@ -1,67 +1,153 @@
+import { ArrowLink } from "@/components/arrow-link";
 import { MapPlaceholder } from "@/components/map-placeholder";
+import { sectionBodyClass, sectionLedeClass } from "@/components/section-header";
 import { site } from "@/lib/content";
 
 type ContactProps = {
   heading?: "h1" | "h2";
+  layout?: "page" | "home";
 };
 
-export function Contact({ heading = "h2" }: ContactProps) {
+const contactIntro =
+  "Görüşme talebi, randevu ve dosya ile ilgili sorularınız için bize ulaşabilirsiniz.";
+
+export function Contact({ heading = "h2", layout = "page" }: ContactProps) {
+  const TitleTag = heading;
+  const titleClass =
+    heading === "h1" ? "page-title mt-4" : "heading mt-4";
+
   return (
-    <section id="iletisim" className="border-t border-line" aria-labelledby="iletisim-baslik">
-      <div className="shell grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:gap-16 lg:py-32">
-        <div className="lg:col-span-5">
-          {heading === "h1" ? (
-            <h1 id="iletisim-baslik" className="display text-[clamp(2.2rem,4vw,3.4rem)]">
-              İletişim
-            </h1>
+    <section
+      id="iletisim"
+      aria-labelledby="iletisim-baslik"
+      className={layout === "home" ? "bg-stone" : undefined}
+    >
+      <div className="section shell">
+        <p className="kicker">Beyoğlu · İstanbul</p>
+        <TitleTag id="iletisim-baslik" className={titleClass}>
+          İletişim
+        </TitleTag>
+        {layout === "page" ? (
+          <p className={sectionLedeClass}>{contactIntro}</p>
+        ) : null}
+
+        <div className="mt-10 border-t border-line pt-8 md:mt-12 md:pt-10">
+          {layout === "page" ? (
+            <div className="flex flex-col gap-10 md:gap-12">
+              <ContactDetails variant="grid" />
+              <ArrowLink href={`mailto:${site.email}`}>
+                E-posta gönderin
+              </ArrowLink>
+              <MapPlaceholder
+                layout="contact"
+                className="mx-auto w-full max-w-[34rem] sm:max-w-[38rem]"
+              />
+            </div>
           ) : (
-            <h2 id="iletisim-baslik" className="display text-[clamp(2.2rem,4vw,3.4rem)]">
-              İletişim
-            </h2>
+            <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-x-16">
+              <div className="w-full lg:w-[42%] lg:max-w-[26rem] lg:shrink-0">
+                <ContactDetails />
+                <div className="mt-10">
+                  <ArrowLink href={`mailto:${site.email}`}>
+                    E-posta gönderin
+                  </ArrowLink>
+                </div>
+              </div>
+
+              <div className="flex min-w-0 flex-1 flex-col gap-5">
+                <p className="lede m-0 w-full max-w-none text-pretty md:text-lg md:leading-8">
+                  {contactIntro}
+                </p>
+                <MapPlaceholder layout="contact" />
+              </div>
+            </div>
           )}
-          <p className="mt-6 text-lg leading-8 text-muted">
-            Görüşmek için bize ulaşabilirsiniz.
-          </p>
-          <dl className="mt-10 space-y-6">
-            <div>
-              <dt className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-accent">
-                Adres
-              </dt>
-              <dd className="mt-2 text-base leading-7 text-ink-soft">
-                {site.address.street}
-                <br />
-                {site.address.district} / {site.address.city} {site.address.postalCode}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-accent">
-                Telefon
-              </dt>
-              <dd className="mt-2">
-                <a href={site.phoneHref} className="text-base text-ink-soft hover:text-ink">
-                  {site.phoneDisplay}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-accent">
-                E-posta
-              </dt>
-              <dd className="mt-2">
-                <a
-                  href={`mailto:${site.email}`}
-                  className="text-base text-ink-soft hover:text-ink"
-                >
-                  {site.email}
-                </a>
-              </dd>
-            </div>
-          </dl>
-        </div>
-        <div className="lg:col-span-7">
-          <MapPlaceholder label={`${site.name}, ${site.address.district}`} />
         </div>
       </div>
     </section>
+  );
+}
+
+type ContactDetailsProps = {
+  variant?: "list" | "grid";
+};
+
+function ContactDetails({ variant = "list" }: ContactDetailsProps) {
+  const rowClass =
+    "grid gap-1.5 border-b border-line pb-5 sm:grid-cols-[8.5rem_1fr] sm:items-baseline sm:gap-6";
+
+  const gridItemClass = "flex flex-col gap-2.5";
+
+  if (variant === "grid") {
+    return (
+      <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-10">
+        <div className={gridItemClass}>
+          <dt className="kicker">Adres</dt>
+          <dd className={sectionBodyClass}>
+            {site.address.street}
+            <br />
+            {site.address.district} / {site.address.city}{" "}
+            {site.address.postalCode}
+          </dd>
+        </div>
+        <div className={gridItemClass}>
+          <dt className="kicker">Telefon</dt>
+          <dd>
+            <a
+              href={site.phoneHref}
+              className={`${sectionBodyClass} transition-colors hover:text-accent`}
+            >
+              {site.phoneDisplay}
+            </a>
+          </dd>
+        </div>
+        <div className={`${gridItemClass} sm:col-span-2 lg:col-span-1`}>
+          <dt className="kicker">E-posta</dt>
+          <dd>
+            <a
+              href={`mailto:${site.email}`}
+              className={`${sectionBodyClass} break-all transition-colors hover:text-accent sm:break-normal`}
+            >
+              {site.email}
+            </a>
+          </dd>
+        </div>
+      </dl>
+    );
+  }
+
+  return (
+    <dl>
+      <div className={`${rowClass} pt-0`}>
+        <dt className="kicker">Adres</dt>
+        <dd className={sectionBodyClass}>
+          {site.address.street}
+          <br />
+          {site.address.district} / {site.address.city} {site.address.postalCode}
+        </dd>
+      </div>
+      <div className={`${rowClass} pt-5`}>
+        <dt className="kicker">Telefon</dt>
+        <dd>
+          <a
+            href={site.phoneHref}
+            className={`${sectionBodyClass} transition-colors hover:text-accent`}
+          >
+            {site.phoneDisplay}
+          </a>
+        </dd>
+      </div>
+      <div className={`${rowClass} pt-5`}>
+        <dt className="kicker">E-posta</dt>
+        <dd>
+          <a
+            href={`mailto:${site.email}`}
+            className={`${sectionBodyClass} break-all transition-colors hover:text-accent sm:break-normal`}
+          >
+            {site.email}
+          </a>
+        </dd>
+      </div>
+    </dl>
   );
 }

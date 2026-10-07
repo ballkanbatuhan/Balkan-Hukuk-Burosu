@@ -4,13 +4,11 @@ import { legalNav, mainNav, site } from "@/lib/content";
 export function Footer() {
   return (
     <footer className="bg-night text-night-text">
-      <div className="shell grid gap-12 py-16 md:grid-cols-12 md:py-20">
+      <div className="shell grid gap-12 border-t border-white/10 py-14 md:grid-cols-12 md:py-16">
         <div className="md:col-span-4">
-          <p className="text-[0.72rem] font-medium tracking-[0.2em]">BALKAN</p>
-          <p className="mt-1 text-[0.62rem] tracking-[0.16em] text-night-text/60">
-            HUKUK BÜROSU
-          </p>
-          <p className="mt-6 max-w-xs text-sm leading-6 text-night-text/70">
+          <p className="font-serif text-[0.95rem] font-medium tracking-[0.16em]">BALKAN</p>
+          <p className="kicker mt-1.5 text-night-text/60">Hukuk Bürosu</p>
+          <p className="mt-6 max-w-xs text-base leading-7 text-night-text/70">
             İstanbul’da hukuki danışmanlık ve avukatlık hizmetleri.
           </p>
         </div>
@@ -20,7 +18,7 @@ export function Footer() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm text-night-text/80 transition-colors hover:text-night-text"
+                  className="text-base text-night-text/80 transition-colors hover:text-night-text"
                 >
                   {item.label}
                 </Link>
@@ -34,7 +32,7 @@ export function Footer() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm text-night-text/80 transition-colors hover:text-night-text"
+                  className="text-base text-night-text/80 transition-colors hover:text-night-text"
                 >
                   {item.label}
                 </Link>

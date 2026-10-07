@@ -1,20 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #f3eee6;
-  --cream-deep: #e6dfd3;
-  --ink: #1c2430;
-  --ink-soft: #323b49;
-  --muted: #5c6570;
-  --line: rgba(28, 36, 48, 0.14);
-  --accent: #8d7352;
-  --night: #17202b;
-  --night-text: #f4efe7;
-  --background: var(--cream);
+  --paper: #f6f1ea;
+  --stone: #e6ddd0;
+  --map: #ddd3c4;
+  --cream: var(--paper);
+  --cream-deep: var(--stone);
+  --ink: #1b1814;
+  --ink-soft: #3c362f;
+  --muted: #6a6158;
+  --line: rgba(27, 24, 20, 0.12);
+  --accent: #8a7049;
+  --night: #141210;
+  --night-text: #f7f2eb;
+  --background: var(--paper);
   --foreground: var(--ink);
 }
 
 @theme inline {
+  --color-paper: var(--paper);
+  --color-stone: var(--stone);
+  --color-map: var(--map);
   --color-cream: var(--cream);
   --color-cream-deep: var(--cream-deep);
   --color-ink: var(--ink);
@@ -26,20 +32,21 @@
   --color-night-text: var(--night-text);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-outfit), "Segoe UI", sans-serif;
-  --font-serif: var(--font-newsreader), "Iowan Old Style", "Palatino Linotype", serif;
+  --font-sans: var(--font-source-sans), "Segoe UI", sans-serif;
+  --font-serif: var(--font-source-serif), "Palatino Linotype", "Times New Roman", serif;
 }
 
 html {
   color-scheme: light;
-  background: var(--cream);
+  background: var(--paper);
   scroll-padding-top: 5.5rem;
 }
 
 body {
-  background: var(--cream);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-weight: 400;
   text-rendering: optimizeLegibility;
 }
 
@@ -49,7 +56,7 @@ body {
 }
 
 ::selection {
-  background: #ddd4c4;
+  background: #ddd2c2;
   color: var(--ink);
 }
 
@@ -62,34 +69,132 @@ body {
 
 @media (min-width: 640px) {
   .shell {
-    padding-inline: 2rem;
+    padding-inline: 1.75rem;
   }
 }
 
-.eyebrow {
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
+@media (min-width: 1024px) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
 }
 
-.display {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 1.08;
+.section {
+  padding-block: 4.5rem;
+}
+
+.section-hero {
+  padding-top: 1rem;
+  padding-bottom: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: 5.75rem;
+  }
+
+  .section-hero {
+    padding-top: 1.5rem;
+    padding-bottom: 5.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-block: 6.5rem;
+  }
+
+  .section-hero {
+    padding-top: 1.75rem;
+    padding-bottom: 6.5rem;
+  }
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+  }
+
+  .heading {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-size: clamp(2.35rem, 4.2vw, 3.6rem);
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-size: clamp(2.5rem, 5vw, 4.05rem);
+  }
+
+  .item-title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.28;
+    font-size: 1.375rem;
+  }
+
+  .figure {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    font-size: clamp(1.75rem, 2.6vw, 2.35rem);
+  }
+
+  .quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.38;
+    font-size: clamp(1.4rem, 2.1vw, 1.85rem);
+  }
+
+  .lede {
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+
+  .kicker,
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1.45;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+}
+
+@media (min-width: 768px) {
+  .item-title {
+    font-size: 1.5rem;
+  }
 }
 
 .rise {
-  animation: rise 640ms ease both;
+  animation: rise 720ms ease both;
 }
 
 @keyframes rise {
   from {
-    transform: translateY(8px);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
+    opacity: 1;
     transform: none;
   }
 }

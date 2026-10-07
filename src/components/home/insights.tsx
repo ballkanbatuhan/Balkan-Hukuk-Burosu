@@ -1,39 +1,50 @@
 import Link from "next/link";
 import { ArrowLink } from "@/components/arrow-link";
-import { articles } from "@/lib/content";
+import { SectionHeader, sectionBlockSpacing } from "@/components/section-header";
+import { articles, formatPracticeNumber } from "@/lib/content";
 
 export function Insights() {
   return (
-    <section
-      id="hukuki-bilgi"
-      aria-labelledby="hukuki-bilgi-baslik"
-      className="shell py-20 md:py-28 lg:py-32"
-    >
-      <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-        <div className="max-w-xl">
-          <h2 id="hukuki-bilgi-baslik" className="display text-[clamp(2.2rem,4vw,3.4rem)]">
-            Hukuki Bilgi
-          </h2>
-          <p className="mt-5 text-lg leading-8 text-muted">
-            Güncel hukuki konular üzerine seçilmiş içerikler.
-          </p>
+    <section id="hukuki-bilgi" aria-labelledby="hukuki-bilgi-baslik" className="bg-stone">
+      <div className="section shell">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div className="min-w-0 flex-1">
+            <SectionHeader
+              id="hukuki-bilgi-baslik"
+              kicker="Seçilmiş içerikler"
+              title="Hukuki Bilgi"
+              description="Güncel hukuki konular üzerine seçilmiş içerikler."
+            />
+          </div>
+          <ArrowLink href="/hukuki-bilgi" className="shrink-0">
+            Tüm içerikler
+          </ArrowLink>
         </div>
-        <ArrowLink href="/hukuki-bilgi">Tüm içerikler</ArrowLink>
-      </div>
-      <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
-        {articles.map((article) => (
-          <article key={article.slug} className="border-t border-ink pt-6">
-            <p className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-accent">
-              Yakında
-            </p>
-            <h3 className="mt-4 font-serif text-[1.65rem] leading-snug tracking-tight">
-              <Link href={`/hukuki-bilgi/${article.slug}`} className="hover:text-ink-soft">
-                {article.title}
+
+        <ol className={`${sectionBlockSpacing} border-t border-line`}>
+          {articles.map((article, index) => (
+            <li key={article.slug} className="border-b border-line">
+              <Link
+                href={`/hukuki-bilgi/${article.slug}`}
+                className="group grid gap-3 py-6 md:grid-cols-12 md:items-baseline md:gap-6 md:py-8"
+              >
+                <span className="kicker tabular-nums md:col-span-1">
+                  {formatPracticeNumber(index)}
+                </span>
+                <h3 className="item-title text-ink transition-transform duration-300 ease-out motion-safe:group-hover:translate-x-1 md:col-span-5">
+                  {article.title}
+                </h3>
+                <p className="text-base leading-7 text-muted md:col-span-4">{article.excerpt}</p>
+                <span className="text-[0.9375rem] font-medium text-ink md:col-span-2 md:text-right">
+                  <span className="border-b border-ink/25 pb-0.5 transition-colors duration-200 group-hover:border-ink">
+                    Devamını oku
+                  </span>
+                  <span aria-hidden="true"> →</span>
+                </span>
               </Link>
-            </h3>
-            <p className="mt-4 text-sm leading-6 text-muted">{article.excerpt}</p>
-          </article>
-        ))}
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

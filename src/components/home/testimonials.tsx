@@ -1,47 +1,71 @@
-import type { ReactNode } from "react";
-import { testimonials } from "@/lib/content";
+import { EditorialImage } from "@/components/editorial-image";
+import { SectionHeader, sectionBlockSpacing, sectionLedeClass } from "@/components/section-header";
+import { media, testimonials } from "@/lib/content";
 
-export async function Testimonials() {
-  if (testimonials.length > 0) {
-    const { TestimonialCarousel } = await import("@/components/testimonial-carousel");
-
-    return (
-      <section
-        aria-labelledby="guven-baslik"
-        className="border-t border-line bg-[#efe8dc]"
-      >
-        <TestimonialsLayout>
-          <TestimonialCarousel items={testimonials} />
-        </TestimonialsLayout>
-      </section>
-    );
-  }
+export function Testimonials() {
+  const quotes = testimonials.slice(0, 3);
 
   return (
-    <section aria-labelledby="guven-baslik" className="border-t border-line bg-[#efe8dc]">
-      <TestimonialsLayout>
-        <p className="max-w-sm text-base leading-7 text-muted">
-          Müvekkil görüşleri, kaynakları doğrulandıktan sonra bu alanda paylaşılacak.
-        </p>
-      </TestimonialsLayout>
-    </section>
-  );
-}
+    <section aria-labelledby="guven-baslik">
+      <div className="section shell">
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <SectionHeader
+              id="guven-baslik"
+              kicker="Müvekkillerimizden"
+              title={
+                <>
+                  Güven, yalnızca sonuçla değil;
+                  <span className="block">süreçle de kurulur.</span>
+                </>
+              }
+              headingClassName="heading mt-4 max-w-[18ch]"
+            />
+          </div>
+          <figure className="lg:col-span-5 lg:pt-2">
+            <EditorialImage
+              src={media.justice.src}
+              alt={media.justice.alt}
+              zoom
+              objectPosition="center 18%"
+              sizes="(min-width: 1024px) 28rem, 100vw"
+              className="aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-[4/5]"
+            />
+            <figcaption className="mt-3.5 kicker">Adalet</figcaption>
+          </figure>
+        </div>
 
-function TestimonialsLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="shell grid gap-10 py-20 md:py-28 lg:grid-cols-12 lg:py-32">
-      <div className="lg:col-span-7">
-        <p className="eyebrow">Müvekkillerimizden</p>
-        <h2
-          id="guven-baslik"
-          className="display mt-6 max-w-xl text-[clamp(2.1rem,4vw,3.3rem)]"
-        >
-          Güven, yalnızca sonuçla değil;
-          <span className="block">süreçle de kurulur.</span>
-        </h2>
+        {quotes.length > 0 ? (
+          <ol className={`${sectionBlockSpacing} space-y-12 md:space-y-16`}>
+            {quotes.map((item, index) => (
+              <li
+                key={item.id}
+                className={
+                  index === 1 ? "lg:ml-[18%] lg:max-w-[40rem]" : "max-w-[46rem]"
+                }
+              >
+                <figure>
+                  <blockquote>
+                    <p className="quote text-ink">
+                      “{item.quote}”
+                    </p>
+                  </blockquote>
+                  <figcaption className="mt-6 kicker text-ink">
+                    {item.author}
+                    {item.context ? ` · ${item.context}` : null}
+                    {" · "}
+                    Google
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className={`${sectionLedeClass} ${sectionBlockSpacing}`}>
+            Müvekkil görüşleri, kaynakları doğrulandıktan sonra bu alanda paylaşılacak.
+          </p>
+        )}
       </div>
-      <div className="lg:col-span-5 lg:pt-16">{children}</div>
-    </div>
+    </section>
   );
 }

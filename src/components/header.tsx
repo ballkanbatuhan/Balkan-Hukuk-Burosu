@@ -41,18 +41,16 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b bg-cream transition-[padding,border-color] duration-200 motion-safe ${
+      className={`sticky top-0 z-40 border-b bg-cream/95 backdrop-blur-md transition-[padding,border-color] duration-200 motion-safe ${
         compact ? "border-line py-3" : "border-transparent py-5"
       }`}
     >
       <div className="shell flex items-center justify-between gap-6">
         <Link href="/" className="shrink-0 leading-none">
-          <span className="block text-[0.72rem] font-medium tracking-[0.2em]">
+          <span className="block font-serif text-[0.95rem] font-medium tracking-[0.16em]">
             BALKAN
           </span>
-          <span className="mt-1 block text-[0.62rem] tracking-[0.16em] text-muted">
-            HUKUK BÜROSU
-          </span>
+          <span className="kicker mt-1.5 block text-muted">Hukuk Bürosu</span>
           <span className="sr-only">{site.name}</span>
         </Link>
 
@@ -61,7 +59,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={`text-[0.84rem] tracking-wide transition-colors hover:text-ink ${
+              className={`text-[0.9375rem] font-medium transition-colors hover:text-ink ${
                 pathname === item.href ? "text-ink" : "text-ink-soft"
               }`}
               aria-current={pathname === item.href ? "page" : undefined}
@@ -74,7 +72,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/iletisim"
-            className="hidden items-center gap-2 bg-ink px-4 py-2.5 text-[0.84rem] text-cream transition-colors hover:bg-ink-soft xl:inline-flex"
+            className="hidden items-center gap-2 bg-ink px-4 py-2.5 text-[0.9375rem] font-medium text-cream transition-colors hover:bg-ink-soft xl:inline-flex"
           >
             İletişime Geç
             <span aria-hidden="true">→</span>
@@ -118,7 +116,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="border-b border-line py-4 font-serif text-3xl tracking-tight"
+              className="border-b border-line py-4 text-2xl font-medium tracking-tight"
               aria-current={pathname === item.href ? "page" : undefined}
             >
               {item.label}
@@ -126,7 +124,7 @@ export function Header() {
           ))}
           <Link
             href="/iletisim"
-            className="mt-6 inline-flex w-fit items-center gap-2 bg-ink px-5 py-3 text-cream"
+            className="mt-6 inline-flex w-fit items-center gap-2 bg-ink px-5 py-3 text-[0.9375rem] font-medium text-cream"
           >
             İletişime Geç
             <span aria-hidden="true">→</span>

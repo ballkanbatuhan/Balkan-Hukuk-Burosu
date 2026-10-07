@@ -20,7 +20,7 @@ export function ArrowLink({
   variant = "text",
   className = "",
 }: ArrowLinkProps) {
-  const classes = `group inline-flex items-center gap-2.5 text-[0.95rem] leading-none transition-colors duration-200 motion-safe ${variants[variant]} ${className}`;
+  const classes = `group inline-flex items-center gap-2.5 text-[0.9375rem] font-medium leading-none transition-colors duration-200 motion-safe ${variants[variant]} ${className}`;
   const content = (
     <>
       <span
@@ -41,7 +41,7 @@ export function ArrowLink({
     </>
   );
 
-  if (href.startsWith("http")) {
+  if (href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) {
     return (
       <a href={href} className={classes} rel="noopener noreferrer">
         {content}

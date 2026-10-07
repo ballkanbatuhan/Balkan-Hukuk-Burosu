@@ -2,7 +2,7 @@ export const site = {
   name: "Balkan Hukuk Bürosu",
   shortName: "Balkan Hukuk",
   description:
-    "İstanbul’da, Av. Zeynep Balkan’ın liderliğinde hukuki danışmanlık ve avukatlık hizmetleri.",
+    "İstanbul’da hukuki danışmanlık ve avukatlık. Bireysel ve kurumsal müvekkiller için ölçülü, net ve sürdürülebilir bir hukuk pratiği.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://balkanhukukburosu.com",
   locale: "tr_TR",
   copyrightYear: 2026,

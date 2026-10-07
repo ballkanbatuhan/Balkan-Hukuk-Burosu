@@ -1,32 +1,52 @@
-type MapPlaceholderProps = {
-  label: string;
+import { site } from "@/lib/content";
+
+type MapEmbedProps = {
+  className?: string;
+  layout?: "default" | "contact";
 };
 
-/**
- * TODO: Gerçek harita gömüsü bu bileşenin içine eklenecek.
- * Şimdilik iframe yok.
- */
-export function MapPlaceholder({ label }: MapPlaceholderProps) {
+function officeMapQuery() {
+  return encodeURIComponent(
+    `${site.address.street}, ${site.address.district}, ${site.address.city}`,
+  );
+}
+
+export function MapPlaceholder({
+  className = "",
+  layout = "default",
+}: MapEmbedProps) {
+  const query = officeMapQuery();
+  const mapsUrl = `https://www.google.com/maps?q=${query}&hl=tr&z=16&output=embed`;
+  const mapsLink = `https://www.google.com/maps?q=${query}&hl=tr`;
+
+  const frameClass =
+    layout === "contact"
+      ? "relative w-full overflow-hidden border border-line bg-map aspect-[2/1] sm:aspect-[5/2]"
+      : "relative min-h-[16rem] w-full overflow-hidden border border-line bg-map aspect-[3/2] sm:aspect-[16/10] lg:aspect-auto lg:min-h-[28rem]";
+
   return (
-    <div
-      className="relative min-h-80 overflow-hidden border border-line bg-[#e4ddd0]"
-      role="img"
-      aria-label={`${label}. Harita henüz eklenmedi.`}
-    >
-      <div
-        className="absolute inset-0 opacity-70"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(28,36,48,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(28,36,48,0.08) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-      <div className="absolute left-1/2 top-1/2 w-44 -translate-x-1/2 -translate-y-1/2 text-center">
-        <span className="mx-auto block h-2.5 w-2.5 rounded-full bg-ink" />
-        <span className="mx-auto mt-1 block h-4 w-px bg-ink" />
-        <p className="mt-3 text-sm text-ink">Balkan Hukuk Bürosu</p>
-        <p className="mt-1 text-xs tracking-wide text-muted">Beyoğlu / İstanbul</p>
+    <figure className={`flex flex-col ${className}`}>
+      <div className={frameClass}>
+        <iframe
+          title={`${site.name} konumu`}
+          src={mapsUrl}
+          className="absolute inset-0 h-full w-full border-0"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
       </div>
-    </div>
+      <figcaption className="mt-3.5 shrink-0 kicker">
+        <a
+          href={mapsLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ink transition-colors hover:text-accent"
+        >
+          Haritada aç
+        </a>
+        <span className="text-muted"> · {site.address.district}</span>
+      </figcaption>
+    </figure>
   );
 }

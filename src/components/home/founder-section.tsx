@@ -1,45 +1,53 @@
 import { ArrowLink } from "@/components/arrow-link";
 import { EditorialImage } from "@/components/editorial-image";
+import { sectionBodyClass, sectionLedeClass } from "@/components/section-header";
 import { founder, media } from "@/lib/content";
 
 export function FounderSection() {
   return (
-    <section id="kurucu" className="border-t border-line" aria-labelledby="kurucu-baslik">
-      <div className="shell py-20 md:py-28 lg:py-32">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-4 lg:col-start-1 lg:row-start-1">
-            <p className="eyebrow">{founder.role}</p>
-            <h2
-              id="kurucu-baslik"
-              className="display mt-5 text-[clamp(2.2rem,4vw,3.3rem)]"
-            >
-              {founder.name}
-            </h2>
-          </div>
-          <figure className="lg:col-span-4 lg:col-start-5 lg:row-span-2 lg:row-start-1">
+    <section id="kurucu" aria-labelledby="kurucu-baslik">
+      <div className="section shell">
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          <figure className="lg:col-span-5 lg:pr-4 xl:pr-10">
             <EditorialImage
               src={media.portrait.src}
               alt={media.portrait.alt}
-              sizes="(min-width: 1024px) 28vw, 100vw"
-              className="aspect-[4/5] w-full"
+              width={media.portrait.width}
+              height={media.portrait.height}
+              zoom
+              objectFit="contain"
+              objectPosition="top center"
+              sizes="(min-width: 1024px) 36vw, 100vw"
+              className="w-full bg-white"
             />
+            <figcaption className="mt-3.5 flex items-baseline justify-between gap-4">
+              <span className="kicker text-ink">{founder.name}</span>
+              <span className="kicker">{founder.role}</span>
+            </figcaption>
           </figure>
-          <div className="lg:col-span-4 lg:col-start-1 lg:row-start-2">
-            <p className="text-base leading-8 text-ink-soft">{founder.summary}</p>
+
+          <div className="lg:col-span-6 lg:col-start-7 lg:pt-2 xl:pt-8">
+            <p className="kicker">Kurucu</p>
+            <h2 id="kurucu-baslik" className="heading mt-4">
+              {founder.name}
+            </h2>
+            <p className={sectionLedeClass}>{founder.summary}</p>
             <div className="mt-8">
               <ArrowLink href="/av-zeynep-balkan">Profili İncele</ArrowLink>
             </div>
+
+            <dl className="mt-12 border-t border-line md:mt-16">
+              {founder.facts.map((fact) => (
+                <div
+                  key={fact.label}
+                  className="grid gap-1.5 border-b border-line py-5 sm:grid-cols-[8.5rem_1fr] sm:gap-6"
+                >
+                  <dt className="kicker">{fact.label}</dt>
+                  <dd className={sectionBodyClass}>{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <dl className="divide-y divide-line border-y border-line lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1">
-            {founder.facts.map((fact) => (
-              <div key={fact.label} className="grid gap-2 py-5 sm:grid-cols-[7.5rem_1fr]">
-                <dt className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-accent">
-                  {fact.label}
-                </dt>
-                <dd className="text-sm leading-6 text-ink-soft">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </div>
     </section>

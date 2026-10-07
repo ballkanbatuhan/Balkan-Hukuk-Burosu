@@ -18,7 +18,7 @@ export default function PublicationPage() {
       title={publication.title}
       description={publication.description}
     >
-      <p className="text-sm tracking-wide text-muted">{publication.author}</p>
+      <p className="kicker text-ink">{publication.author}</p>
       <Image
         src={media.bookCover.src}
         alt={media.bookCover.alt}

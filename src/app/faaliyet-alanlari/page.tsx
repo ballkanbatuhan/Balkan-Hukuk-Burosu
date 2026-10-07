@@ -23,12 +23,10 @@ export default function PracticeAreasPage() {
           <li key={area.slug} className="border-b border-line">
             <Link
               href={`/faaliyet-alanlari/${area.slug}`}
-              className="flex items-baseline gap-4 py-4"
+              className="flex items-baseline gap-4 py-5 md:py-6"
             >
-              <span className="w-8 text-xs tracking-[0.16em] text-accent">
-                {formatPracticeNumber(index)}
-              </span>
-              <span className="font-serif text-2xl">{area.title}</span>
+              <span className="kicker w-8 tabular-nums">{formatPracticeNumber(index)}</span>
+              <span className="item-title">{area.title}</span>
             </Link>
           </li>
         ))}
