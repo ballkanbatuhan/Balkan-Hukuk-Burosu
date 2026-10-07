@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #f3eee6;
+  --cream-deep: #e6dfd3;
+  --ink: #1c2430;
+  --ink-soft: #323b49;
+  --muted: #5c6570;
+  --line: rgba(28, 36, 48, 0.14);
+  --accent: #8d7352;
+  --night: #17202b;
+  --night-text: #f4efe7;
+  --background: var(--cream);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-night: var(--night);
+  --color-night-text: var(--night-text);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-outfit), "Segoe UI", sans-serif;
+  --font-serif: var(--font-newsreader), "Iowan Old Style", "Palatino Linotype", serif;
+}
+
+html {
+  color-scheme: light;
+  background: var(--cream);
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #ddd4c4;
+  color: var(--ink);
+}
+
+.shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .shell {
+    padding-inline: 2rem;
+  }
+}
+
+.eyebrow {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.rise {
+  animation: rise 640ms ease both;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(8px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .motion-safe {
+    animation: none !important;
+    transition: none !important;
+  }
+}
