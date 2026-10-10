@@ -2,7 +2,7 @@
 export const office = {
   slogan: ["Her adımda dikkat", "Her aşamada özen"] as const,
   heroIntro:
-    "Her müvekkilin ihtiyacına özel, hızlı, etkili ve sonuç odaklı hukuki hizmet sunmak.",
+    "Her müvekkilin ihtiyacına özel, hızlı, etkili ve sonuç odaklı hukuki hizmet sunuyoruz.",
   principles: [
     {
       title: "Vizyon",
@@ -10,7 +10,7 @@ export const office = {
     },
     {
       title: "Misyon",
-      text: "Her müvekkilin ihtiyacına özel, hızlı, etkili ve sonuç odaklı hukuki hizmet sunmak.",
+      text: "Her müvekkilin ihtiyacına özel, hızlı, etkili ve sonuç odaklı hukuki hizmet sunuyoruz.",
     },
     {
       title: "Değerler",

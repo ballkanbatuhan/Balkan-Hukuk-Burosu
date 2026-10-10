@@ -1,5 +1,6 @@
 import { articles } from "@/content/articles";
 import { practiceAreas } from "@/content/practice-areas";
+import { siteFeatures } from "@/content/site";
 
 export type ChangeFrequency = "weekly" | "monthly" | "yearly";
 
@@ -18,7 +19,6 @@ export type SiteRoute = {
 export function getSiteRoutes(): SiteRoute[] {
   const pages: SiteRoute[] = [
     { path: "/", changeFrequency: "weekly", priority: 1, indexable: true },
-    { path: "/buro", changeFrequency: "monthly", priority: 0.8, indexable: false },
     {
       path: "/av-zeynep-balkan",
       changeFrequency: "monthly",
@@ -32,26 +32,18 @@ export function getSiteRoutes(): SiteRoute[] {
       indexable: false,
     },
     { path: "/yayin", changeFrequency: "monthly", priority: 0.7, indexable: false },
-    {
-      path: "/hukuki-bilgi",
-      changeFrequency: "weekly",
-      priority: 0.6,
-      indexable: false,
-    },
+    ...(siteFeatures.hukukiBilgi
+      ? [
+          {
+            path: "/hukuki-bilgi",
+            changeFrequency: "weekly" as const,
+            priority: 0.6,
+            indexable: false,
+          },
+        ]
+      : []),
     { path: "/iletisim", changeFrequency: "yearly", priority: 0.7, indexable: false },
-    { path: "/kvkk", changeFrequency: "yearly", priority: 0.3, indexable: false },
-    {
-      path: "/gizlilik-politikasi",
-      changeFrequency: "yearly",
-      priority: 0.3,
-      indexable: false,
-    },
-    {
-      path: "/yasal-bilgilendirme",
-      changeFrequency: "yearly",
-      priority: 0.3,
-      indexable: false,
-    },
+    { path: "/kvkk", changeFrequency: "yearly", priority: 0.3, indexable: true },
   ];
 
   const areas = practiceAreas.map<SiteRoute>((area) => ({
@@ -61,12 +53,14 @@ export function getSiteRoutes(): SiteRoute[] {
     indexable: false,
   }));
 
-  const posts = articles.map<SiteRoute>((article) => ({
-    path: `/hukuki-bilgi/${article.slug}`,
-    changeFrequency: "monthly",
-    priority: 0.5,
-    indexable: false,
-  }));
+  const posts = siteFeatures.hukukiBilgi
+    ? articles.map<SiteRoute>((article) => ({
+        path: `/hukuki-bilgi/${article.slug}`,
+        changeFrequency: "monthly",
+        priority: 0.5,
+        indexable: false,
+      }))
+    : [];
 
   return [...pages, ...areas, ...posts];
 }

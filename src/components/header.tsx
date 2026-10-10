@@ -74,7 +74,7 @@ export function Header() {
             href="/iletisim"
             className="hidden items-center gap-2 bg-ink px-4 py-2.5 text-[0.9375rem] font-medium text-cream transition-colors hover:bg-ink-soft xl:inline-flex"
           >
-            İletişime Geç
+            İLETİŞİME GEÇ
             <span aria-hidden="true">→</span>
           </Link>
           <button
@@ -126,7 +126,7 @@ export function Header() {
             href="/iletisim"
             className="mt-6 inline-flex w-fit items-center gap-2 bg-ink px-5 py-3 text-[0.9375rem] font-medium text-cream"
           >
-            İletişime Geç
+            İLETİŞİME GEÇ
             <span aria-hidden="true">→</span>
           </Link>
         </nav>

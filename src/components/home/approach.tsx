@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowLink } from "@/components/arrow-link";
 import { SectionHeader, sectionBlockSpacing } from "@/components/section-header";
 import { media, office } from "@/lib/content";
 
@@ -29,8 +28,8 @@ export function Approach() {
           title="Vizyonumuz, misyonumuz ve değerlerimiz."
         />
 
-        <div className={`${sectionBlockSpacing} max-w-xl`}>
-          <dl className="space-y-8">
+        <div className={sectionBlockSpacing}>
+          <dl className="grid gap-10 md:gap-12 lg:grid-cols-3">
             {office.principles.map((principle) => (
               <div key={principle.title}>
                 <dt className="kicker text-[#e4d3b4]">{principle.title}</dt>
@@ -38,9 +37,6 @@ export function Approach() {
               </div>
             ))}
           </dl>
-          <div className="mt-8">
-            <ArrowLink href="/buro">Büro</ArrowLink>
-          </div>
         </div>
       </div>
     </section>

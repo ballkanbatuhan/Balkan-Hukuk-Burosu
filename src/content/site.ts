@@ -21,17 +21,21 @@ export const site = {
   },
 } as const;
 
-export const mainNav = [
-  { href: "/buro", label: "Büro" },
-  { href: "/av-zeynep-balkan", label: "Av. Zeynep Balkan" },
-  { href: "/faaliyet-alanlari", label: "Faaliyet Alanlarımız" },
-  { href: "/yayin", label: "Yayın" },
+/** İçerik hazır olduğunda true yapın; nav, anasayfa ve /hukuki-bilgi sayfaları açılır. */
+export const siteFeatures = {
+  hukukiBilgi: false,
+} as const;
+
+const mainNavItems = [
+  { href: "/av-zeynep-balkan", label: "AV. ZEYNEP BALKAN" },
+  { href: "/faaliyet-alanlari", label: "FAALİYET ALANLARIMIZ" },
+  { href: "/yayin", label: "YAYIN" },
   { href: "/hukuki-bilgi", label: "Hukuki Bilgi" },
-  { href: "/iletisim", label: "İletişim" },
+  { href: "/iletisim", label: "İLETİŞİM" },
 ] as const;
 
-export const legalNav = [
-  { href: "/kvkk", label: "KVKK" },
-  { href: "/gizlilik-politikasi", label: "Gizlilik Politikası" },
-  { href: "/yasal-bilgilendirme", label: "Yasal Bilgilendirme" },
-] as const;
+export const mainNav = mainNavItems.filter(
+  (item) => siteFeatures.hukukiBilgi || item.href !== "/hukuki-bilgi",
+);
+
+export const legalNav = [{ href: "/kvkk", label: "Aydınlatma Metni" }] as const;

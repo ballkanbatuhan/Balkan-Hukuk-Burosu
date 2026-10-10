@@ -17,6 +17,6 @@ export {
 } from "@/content/practice-areas";
 export type { PracticeArea } from "@/content/practice-areas";
 export { publication } from "@/content/publication";
-export { legalNav, mainNav, site } from "@/content/site";
+export { legalNav, mainNav, site, siteFeatures } from "@/content/site";
 export { testimonials } from "@/content/testimonials";
 export type { Testimonial } from "@/content/testimonials";

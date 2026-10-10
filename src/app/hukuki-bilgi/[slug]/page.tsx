@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { SitePage } from "@/components/site-page";
-import { articles, getArticle } from "@/lib/content";
+import { articles, getArticle, siteFeatures } from "@/lib/content";
 import { createMetadata } from "@/lib/seo";
 
 type ArticlePageProps = {
@@ -12,6 +12,10 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ArticlePageProps) {
+  if (!siteFeatures.hukukiBilgi) {
+    return {};
+  }
+
   const { slug } = await params;
   const article = getArticle(slug);
 
@@ -28,6 +32,10 @@ export async function generateMetadata({ params }: ArticlePageProps) {
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
+  if (!siteFeatures.hukukiBilgi) {
+    notFound();
+  }
+
   const { slug } = await params;
   const article = getArticle(slug);
 

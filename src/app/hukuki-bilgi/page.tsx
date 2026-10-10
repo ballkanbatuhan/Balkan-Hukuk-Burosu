@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { SitePage } from "@/components/site-page";
-import { articles } from "@/lib/content";
+import { articles, siteFeatures } from "@/lib/content";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
@@ -11,6 +12,10 @@ export const metadata = createMetadata({
 });
 
 export default function InsightsPage() {
+  if (!siteFeatures.hukukiBilgi) {
+    notFound();
+  }
+
   return (
     <SitePage
       eyebrow="Seçilmiş içerikler"

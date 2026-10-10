@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowLink } from "@/components/arrow-link";
 import { MapPlaceholder } from "@/components/map-placeholder";
 import { SectionHeader, sectionBlockSpacing, sectionBodyClass } from "@/components/section-header";
@@ -15,7 +16,7 @@ export function Contact({ heading = "h2", layout = "page" }: ContactProps) {
     <section
       id="iletisim"
       aria-labelledby="iletisim-baslik"
-      className={layout === "home" ? "bg-stone" : undefined}
+      className={layout === "home" ? "bg-stone border-b border-line" : undefined}
     >
       <div className="section shell">
         <SectionHeader
@@ -34,6 +35,7 @@ export function Contact({ heading = "h2", layout = "page" }: ContactProps) {
               <ArrowLink href={`mailto:${site.email}`}>
                 E-posta gönderin
               </ArrowLink>
+              <KvkkNotice />
               <MapPlaceholder
                 layout="contact"
                 className="mx-auto w-full max-w-[34rem] sm:max-w-[38rem]"
@@ -47,6 +49,7 @@ export function Contact({ heading = "h2", layout = "page" }: ContactProps) {
                   <ArrowLink href={`mailto:${site.email}`}>
                     E-posta gönderin
                   </ArrowLink>
+                  <KvkkNotice />
                 </div>
               </div>
 
@@ -64,6 +67,19 @@ export function Contact({ heading = "h2", layout = "page" }: ContactProps) {
 type ContactDetailsProps = {
   variant?: "list" | "grid";
 };
+
+function KvkkNotice() {
+  return (
+    <p className="mt-6 max-w-sm text-sm leading-6 text-muted">
+      <Link
+        href="/kvkk"
+        className="border-b border-current/30 pb-0.5 transition-colors hover:text-accent"
+      >
+        Kişisel verilerin işlenmesine ilişkin aydınlatma metni
+      </Link>
+    </p>
+  );
+}
 
 function ContactDetails({ variant = "list" }: ContactDetailsProps) {
   const rowClass =

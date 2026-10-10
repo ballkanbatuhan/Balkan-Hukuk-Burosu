@@ -1,0 +1,13 @@
+# GoDaddy Apache — statik Next.js export (public_html köküne kopyalanır)
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTP → HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Eski URL'ler (next.config redirects yerine)
+  RewriteRule ^buro/?$ https://%{HTTP_HOST}/#yaklasim [R=301,L,NE]
+  RewriteRule ^gizlilik-politikasi/?$ /kvkk [R=301,L]
+</IfModule>

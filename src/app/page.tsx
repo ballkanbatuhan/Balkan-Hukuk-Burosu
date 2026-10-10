@@ -1,10 +1,10 @@
 import { Approach } from "@/components/home/approach";
 import { Contact } from "@/components/home/contact";
-import { FinalCta } from "@/components/home/final-cta";
 import { FounderSection } from "@/components/home/founder-section";
 import { Hero } from "@/components/home/hero";
 import { Insights } from "@/components/home/insights";
 import { PracticeAreas } from "@/components/home/practice-areas";
+import { siteFeatures } from "@/lib/content";
 import { Publication } from "@/components/home/publication";
 import { Testimonials } from "@/components/home/testimonials";
 import { JsonLd } from "@/components/json-ld";
@@ -27,10 +27,9 @@ export default function HomePage() {
       <FounderSection />
       <PracticeAreas />
       <Publication />
-      <Insights />
+      {siteFeatures.hukukiBilgi ? <Insights /> : null}
       <Testimonials />
       <Contact layout="home" />
-      <FinalCta />
     </>
   );
 }
