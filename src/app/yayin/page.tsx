@@ -1,14 +1,15 @@
 import Image from "next/image";
 import { ArrowLink } from "@/components/arrow-link";
 import { SitePage } from "@/components/site-page";
+import { seoCopy } from "@/content/seo";
 import { media, publication } from "@/lib/content";
-import { createMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbHome, createMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: publication.title,
-  description: publication.description,
+  description: seoCopy.publication,
   path: "/yayin",
-  index: false,
 });
 
 export default function PublicationPage() {
@@ -31,6 +32,12 @@ export default function PublicationPage() {
         </figure>
       }
     >
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          breadcrumbHome,
+          { name: publication.title, path: "/yayin" },
+        ])}
+      />
       <ArrowLink href={publication.storeUrl}>Kitabın sayfası</ArrowLink>
     </SitePage>
   );

@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { SitePage } from "@/components/site-page";
-import { getPracticeArea, practiceAreas, practiceDescription } from "@/lib/content";
-import { createMetadata } from "@/lib/seo";
+import { getPracticeArea, office, practiceAreas, practiceDescription } from "@/lib/content";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbHome, createMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 
 type PracticeAreaPageProps = {
   params: Promise<{ slug: string }>;
@@ -25,7 +26,6 @@ export async function generateMetadata({
     title: area.title,
     description: practiceDescription(area.body),
     path: `/faaliyet-alanlari/${area.slug}`,
-    index: false,
   });
 }
 
@@ -38,10 +38,15 @@ export default async function PracticeAreaPage({ params }: PracticeAreaPageProps
   }
 
   return (
-    <SitePage
-      eyebrow="Faaliyet Alanlarımız"
-      title={area.title}
-      description={area.body}
-    />
+    <>
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          breadcrumbHome,
+          { name: office.practiceTitle, path: "/faaliyet-alanlari" },
+          { name: area.title, path: `/faaliyet-alanlari/${area.slug}` },
+        ])}
+      />
+      <SitePage eyebrow="Faaliyet Alanlarımız" title={area.title} description={area.body} />
+    </>
   );
 }

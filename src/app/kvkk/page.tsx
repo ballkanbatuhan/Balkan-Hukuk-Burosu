@@ -1,7 +1,8 @@
+import { JsonLd } from "@/components/json-ld";
 import { SitePage } from "@/components/site-page";
 import { kvkkNotice } from "@/content/legal";
 import { site } from "@/lib/content";
-import { createMetadata } from "@/lib/seo";
+import { breadcrumbHome, createMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: kvkkNotice.title,
@@ -12,6 +13,12 @@ export const metadata = createMetadata({
 export default function KvkkPage() {
   return (
     <SitePage eyebrow="Yasal" title={kvkkNotice.title} description={kvkkNotice.description}>
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          breadcrumbHome,
+          { name: kvkkNotice.title, path: "/kvkk" },
+        ])}
+      />
       <div className="space-y-10 text-base leading-7 text-ink-soft">
         <section aria-labelledby="veri-sorumlusu">
           <h2 id="veri-sorumlusu" className="font-serif text-[1.65rem] leading-tight text-ink">

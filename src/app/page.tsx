@@ -4,6 +4,7 @@ import { FounderSection } from "@/components/home/founder-section";
 import { Hero } from "@/components/home/hero";
 import { Insights } from "@/components/home/insights";
 import { PracticeAreas } from "@/components/home/practice-areas";
+import { seoCopy } from "@/content/seo";
 import { siteFeatures } from "@/lib/content";
 import { Publication } from "@/components/home/publication";
 import { Testimonials } from "@/components/home/testimonials";
@@ -13,7 +14,7 @@ import { createMetadata, getLegalServiceJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: site.name,
-  description: site.description,
+  description: seoCopy.home,
   path: "/",
   absoluteTitle: true,
 });

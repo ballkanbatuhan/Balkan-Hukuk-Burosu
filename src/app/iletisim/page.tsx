@@ -1,14 +1,25 @@
 import { Contact } from "@/components/home/contact";
-import { createMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/json-ld";
+import { seoCopy } from "@/content/seo";
 import { office } from "@/lib/content";
+import { breadcrumbHome, createMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: office.contactTitle,
-  description: office.contactIntro,
+  description: seoCopy.contact,
   path: "/iletisim",
-  index: false,
 });
 
 export default function ContactPage() {
-  return <Contact heading="h1" />;
+  return (
+    <>
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          breadcrumbHome,
+          { name: "İletişim", path: "/iletisim" },
+        ])}
+      />
+      <Contact heading="h1" />
+    </>
+  );
 }

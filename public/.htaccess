@@ -1,13 +1,42 @@
 # GoDaddy Apache — statik Next.js export (public_html köküne kopyalanır)
 
+Options -MultiViews
+DirectoryIndex index.html
+DirectorySlash Off
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # HTTP → HTTPS
+  # HTTP → HTTPS, hedef her zaman www
   RewriteCond %{HTTPS} off
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteRule ^ https://www.balkanhukukburosu.com%{REQUEST_URI} [L,R=301]
+
+  # Köksüz alan adı → www
+  RewriteCond %{HTTP_HOST} ^balkanhukukburosu.com$ [NC]
+  RewriteRule ^ https://www.balkanhukukburosu.com%{REQUEST_URI} [L,R=301]
 
   # Eski URL'ler (next.config redirects yerine)
-  RewriteRule ^buro/?$ https://%{HTTP_HOST}/#yaklasim [R=301,L,NE]
+  RewriteRule ^buro/?$ https://www.balkanhukukburosu.com/#yaklasim [R=301,L,NE]
   RewriteRule ^gizlilik-politikasi/?$ /kvkk [R=301,L]
+
+  # /sayfa.html → /sayfa. THE_REQUEST yalnızca tarayıcı isteğine bakar; iç rewrite döngüye girmez.
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [R=301,L,QSA]
+
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,QSA]
+
+  # /sayfa/ ve aynı adlı sayfa.html varsa temiz adrese dön (dizin sayfayı yutmasın)
+  RewriteCond %{REQUEST_URI} ^/(.+)/$
+  RewriteCond %{DOCUMENT_ROOT}/%1.html -f
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Uzantısız istek, dizin olsa bile yanındaki .html dosyasını sunar
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
+
+<Files "opengraph-image">
+  ForceType image/png
+</Files>

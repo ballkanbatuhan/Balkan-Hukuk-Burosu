@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoCopy } from "@/content/seo";
 import { site } from "@/content/site";
 
 type PageMetadataInput = {
@@ -10,6 +11,7 @@ type PageMetadataInput = {
 };
 
 export function absoluteUrl(path: string) {
+  if (path === "/") return site.url;
   return new URL(path, site.url).toString();
 }
 
@@ -54,9 +56,10 @@ export function getLegalServiceJsonLd() {
     "@type": "LegalService",
     name: site.name,
     url: site.url,
-    description: site.description,
+    description: seoCopy.home,
     telephone: "+905396041131",
     email: site.email,
+    image: absoluteUrl("/opengraph-image"),
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.street,
@@ -74,5 +77,43 @@ export function getLegalServiceJsonLd() {
       "@type": "City",
       name: "İstanbul",
     },
+    sameAs: [site.mapsHref],
+  };
+}
+
+export function getFounderJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Zeynep Balkan",
+    honorificPrefix: "Av.",
+    jobTitle: "Avukat",
+    description: seoCopy.founder,
+    url: absoluteUrl("/av-zeynep-balkan"),
+    image: absoluteUrl("/images/zeynep-balkan-portre.png"),
+    worksFor: {
+      "@type": "LegalService",
+      name: site.name,
+      url: site.url,
+    },
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Yeditepe Üniversitesi Hukuk Fakültesi",
+    },
+  };
+}
+
+export const breadcrumbHome = { name: "Ana sayfa", path: "/" } as const;
+
+export function getBreadcrumbJsonLd(items: readonly { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
   };
 }

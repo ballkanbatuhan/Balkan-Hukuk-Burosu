@@ -23,15 +23,15 @@ export function getSiteRoutes(): SiteRoute[] {
       path: "/av-zeynep-balkan",
       changeFrequency: "monthly",
       priority: 0.8,
-      indexable: false,
+      indexable: true,
     },
     {
       path: "/faaliyet-alanlari",
       changeFrequency: "monthly",
       priority: 0.8,
-      indexable: false,
+      indexable: true,
     },
-    { path: "/yayin", changeFrequency: "monthly", priority: 0.7, indexable: false },
+    { path: "/yayin", changeFrequency: "monthly", priority: 0.7, indexable: true },
     ...(siteFeatures.hukukiBilgi
       ? [
           {
@@ -42,7 +42,7 @@ export function getSiteRoutes(): SiteRoute[] {
           },
         ]
       : []),
-    { path: "/iletisim", changeFrequency: "yearly", priority: 0.7, indexable: false },
+    { path: "/iletisim", changeFrequency: "yearly", priority: 0.7, indexable: true },
     { path: "/kvkk", changeFrequency: "yearly", priority: 0.3, indexable: true },
   ];
 
@@ -50,7 +50,7 @@ export function getSiteRoutes(): SiteRoute[] {
     path: `/faaliyet-alanlari/${area.slug}`,
     changeFrequency: "monthly",
     priority: 0.6,
-    indexable: false,
+    indexable: true,
   }));
 
   const posts = siteFeatures.hukukiBilgi

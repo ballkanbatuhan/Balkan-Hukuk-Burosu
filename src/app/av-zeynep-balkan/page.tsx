@@ -1,14 +1,20 @@
 import { EditorialImage } from "@/components/editorial-image";
 import { SitePage } from "@/components/site-page";
 import { sectionBodyClass } from "@/components/section-header";
+import { seoCopy } from "@/content/seo";
 import { founder, media } from "@/lib/content";
-import { createMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/json-ld";
+import {
+  breadcrumbHome,
+  createMetadata,
+  getBreadcrumbJsonLd,
+  getFounderJsonLd,
+} from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: founder.name,
-  description: founder.summary,
+  description: seoCopy.founder,
   path: "/av-zeynep-balkan",
-  index: false,
 });
 
 export default function FounderPage() {
@@ -36,6 +42,13 @@ export default function FounderPage() {
         </figure>
       }
     >
+      <JsonLd data={getFounderJsonLd()} />
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          breadcrumbHome,
+          { name: founder.name, path: "/av-zeynep-balkan" },
+        ])}
+      />
       <div className="space-y-10">
         {founder.sections.map((section) => (
           <section key={section.title}>

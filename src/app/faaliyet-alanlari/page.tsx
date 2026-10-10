@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { SitePage } from "@/components/site-page";
+import { seoCopy } from "@/content/seo";
 import { formatPracticeNumber, office, practiceAreas } from "@/lib/content";
-import { createMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbHome, createMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: office.practiceTitle,
-  description: office.practiceIntro,
+  description: seoCopy.practiceAreas,
   path: "/faaliyet-alanlari",
-  index: false,
 });
 
 export default function PracticeAreasPage() {
@@ -17,6 +18,12 @@ export default function PracticeAreasPage() {
       title={office.practiceTitle}
       description={office.practiceIntro}
     >
+      <JsonLd
+        data={getBreadcrumbJsonLd([
+          breadcrumbHome,
+          { name: office.practiceTitle, path: "/faaliyet-alanlari" },
+        ])}
+      />
       <ol className="border-t border-line">
         {practiceAreas.map((area, index) => (
           <li key={area.slug} className="border-b border-line">

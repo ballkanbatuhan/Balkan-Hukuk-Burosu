@@ -3,7 +3,7 @@ export const site = {
   shortName: "Balkan Hukuk",
   description:
     "Hukukun gücünü, müvekkillerimizin geleceğini güvence altına alan ve stratejik çözümlere dönüştüren öncü bir hukuk ofisi olmak.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://balkanhukukburosu.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.balkanhukukburosu.com",
   locale: "tr_TR",
   copyrightYear: 2026,
   email: "avzeynepbalkan@gmail.com",

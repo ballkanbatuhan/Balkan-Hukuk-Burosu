@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { seoCopy } from "@/content/seo";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     default: site.name,
     template: `%s | ${site.name}`,
   },
-  description: site.description,
+  description: seoCopy.home,
   applicationName: site.name,
   authors: [{ name: "Av. Zeynep Balkan" }],
   creator: site.name,
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     locale: site.locale,
     siteName: site.name,
     title: site.name,
-    description: site.description,
+    description: seoCopy.home,
   },
   robots: {
     index: true,
