@@ -5,19 +5,12 @@ type MapEmbedProps = {
   layout?: "default" | "contact";
 };
 
-function officeMapQuery() {
-  return encodeURIComponent(
-    `${site.address.street}, ${site.address.district}, ${site.address.city}`,
-  );
-}
-
 export function MapPlaceholder({
   className = "",
   layout = "default",
 }: MapEmbedProps) {
-  const query = officeMapQuery();
-  const mapsUrl = `https://www.google.com/maps?q=${query}&hl=tr&z=16&output=embed`;
-  const mapsLink = `https://www.google.com/maps?q=${query}&hl=tr`;
+  const mapsUrl = site.mapsEmbed;
+  const mapsLink = site.mapsHref;
 
   const frameClass =
     layout === "contact"

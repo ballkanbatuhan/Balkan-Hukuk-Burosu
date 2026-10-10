@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { legalNav, mainNav, site } from "@/lib/content";
+import { legalNav, mainNav, office, site } from "@/lib/content";
 
 export function Footer() {
   return (
@@ -9,7 +9,7 @@ export function Footer() {
           <p className="font-serif text-[0.95rem] font-medium tracking-[0.16em]">BALKAN</p>
           <p className="kicker mt-1.5 text-night-text/60">Hukuk Bürosu</p>
           <p className="mt-6 max-w-xs text-base leading-7 text-night-text/70">
-            İstanbul’da hukuki danışmanlık ve avukatlık hizmetleri.
+            {office.practiceIntro}
           </p>
         </div>
         <nav className="md:col-span-4" aria-label="Alt menü">

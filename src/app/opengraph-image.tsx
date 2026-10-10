@@ -30,7 +30,7 @@ export default function OpenGraphImage() {
             maxWidth: 900,
           }}
         >
-          Hukuki meselelerde özenli bir yaklaşım.
+          Her adımda dikkat, her aşamada özen.
         </div>
         <div style={{ display: "flex", fontSize: 24, color: "#5c6570" }}>İstanbul</div>
       </div>

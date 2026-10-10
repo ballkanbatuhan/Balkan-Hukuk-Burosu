@@ -1,41 +1,45 @@
+import Image from "next/image";
 import { ArrowLink } from "@/components/arrow-link";
-import { EditorialImage } from "@/components/editorial-image";
-import { sectionBlockSpacing } from "@/components/section-header";
-import { media } from "@/lib/content";
+import { SectionHeader, sectionBlockSpacing } from "@/components/section-header";
+import { media, office } from "@/lib/content";
 
 export function Approach() {
   return (
-    <section id="yaklasim" aria-labelledby="yaklasim-baslik" className="bg-stone">
-      <div className="section shell">
-        <p className="kicker">Yaklaşım</p>
-        <h2
-          id="yaklasim-baslik"
-          className="heading mt-4 max-w-[18ch]"
-        >
-          Her hukuki mesele
-          <span className="block">kendi koşulları içinde değerlendirilir.</span>
-        </h2>
+    <section
+      id="yaklasim"
+      aria-labelledby="yaklasim-baslik"
+      className="relative overflow-hidden bg-night text-night-text"
+    >
+      <Image
+        src={media.workspace.src}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover object-[58%_42%]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-r from-night/82 via-night/70 to-night/58 lg:via-night/58 lg:to-night/30"
+      />
 
-        <div className={`${sectionBlockSpacing} grid items-end gap-12 lg:grid-cols-12 lg:gap-16`}>
-          <figure className="lg:col-span-7">
-            <EditorialImage
-              src={media.workspace.src}
-              alt={media.workspace.alt}
-              zoom
-              sizes="(min-width: 1024px) 52vw, 100vw"
-              className="aspect-[3/2] w-full"
-            />
-            <figcaption className="mt-3.5 kicker">Çalışma ortamı</figcaption>
-          </figure>
-          <div className="lg:col-span-4 lg:col-start-9 lg:pb-10">
-            <p className="lede text-pretty">
-              Yaklaşımımız; dikkatli analiz, açık iletişim ve özenli bir süreç takibi
-              üzerine kuruludur. Amacımız, müvekkillerimizin hukuki süreçlerinde
-              güvenilir, anlaşılır ve sürdürülebilir çözümler sunmaktır.
-            </p>
-            <div className="mt-8">
-              <ArrowLink href="/buro">Büroyu Tanıyın</ArrowLink>
-            </div>
+      <div className="section shell relative [&_.kicker]:text-[#e4d3b4]">
+        <SectionHeader
+          id="yaklasim-baslik"
+          kicker="Büro"
+          title="Vizyonumuz, misyonumuz ve değerlerimiz."
+        />
+
+        <div className={`${sectionBlockSpacing} max-w-xl`}>
+          <dl className="space-y-8">
+            {office.principles.map((principle) => (
+              <div key={principle.title}>
+                <dt className="kicker text-[#e4d3b4]">{principle.title}</dt>
+                <dd className="mt-3 text-pretty text-base leading-7 text-night-text/90">{principle.text}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-8">
+            <ArrowLink href="/buro">Büro</ArrowLink>
           </div>
         </div>
       </div>

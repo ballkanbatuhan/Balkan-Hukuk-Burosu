@@ -28,9 +28,12 @@ export function EditorialImage({
   const aspectStyle =
     width && height ? { aspectRatio: `${width} / ${height}` } : undefined;
 
+  const backgroundClass =
+    objectFit === "contain" ? "bg-white" : "bg-cream-deep";
+
   return (
     <div
-      className={`group relative overflow-hidden bg-cream-deep ${className}`}
+      className={`group relative overflow-hidden ${backgroundClass} ${className}`}
       style={aspectStyle}
     >
       <Image

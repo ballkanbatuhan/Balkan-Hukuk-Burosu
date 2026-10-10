@@ -7,19 +7,15 @@ export function Insights() {
   return (
     <section id="hukuki-bilgi" aria-labelledby="hukuki-bilgi-baslik" className="bg-stone">
       <div className="section shell">
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="min-w-0 flex-1">
-            <SectionHeader
-              id="hukuki-bilgi-baslik"
-              kicker="Seçilmiş içerikler"
-              title="Hukuki Bilgi"
-              description="Güncel hukuki konular üzerine seçilmiş içerikler."
-            />
-          </div>
-          <ArrowLink href="/hukuki-bilgi" className="shrink-0">
-            Tüm içerikler
-          </ArrowLink>
-        </div>
+        <SectionHeader
+          id="hukuki-bilgi-baslik"
+          kicker="Seçilmiş içerikler"
+          title="Hukuki Bilgi"
+          description="Güncel hukuki konular üzerine seçilmiş içerikler."
+          action={
+            <ArrowLink href="/hukuki-bilgi">Tüm içerikler</ArrowLink>
+          }
+        />
 
         <ol className={`${sectionBlockSpacing} border-t border-line`}>
           {articles.map((article, index) => (

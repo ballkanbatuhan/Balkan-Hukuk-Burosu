@@ -17,18 +17,21 @@ export default function PublicationPage() {
       eyebrow={publication.eyebrow}
       title={publication.title}
       description={publication.description}
+      aside={
+        <figure className="w-full">
+          <Image
+            src={media.bookCover.src}
+            alt={media.bookCover.alt}
+            width={media.bookCover.width}
+            height={media.bookCover.height}
+            sizes="(min-width: 1024px) 18rem, 70vw"
+            className="h-auto w-full shadow-[0_28px_50px_-32px_rgba(23,26,31,0.55)]"
+          />
+          <figcaption className="mt-3.5 kicker text-ink">{publication.author}</figcaption>
+        </figure>
+      }
     >
-      <p className="kicker text-ink">{publication.author}</p>
-      <Image
-        src={media.bookCover.src}
-        alt={media.bookCover.alt}
-        width={media.bookCover.width}
-        height={media.bookCover.height}
-        className="mt-8 h-auto w-52"
-      />
-      <div className="mt-8">
-        <ArrowLink href={publication.storeUrl}>Kitabın sayfası</ArrowLink>
-      </div>
+      <ArrowLink href={publication.storeUrl}>Kitabın sayfası</ArrowLink>
     </SitePage>
   );
 }

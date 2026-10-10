@@ -1,8 +1,12 @@
 import type { ReactNode } from "react";
 
-/** Ana sayfa bölümlerinde ortak giriş paragrafı stili */
-export const sectionLedeClass =
-  "lede mt-6 w-full max-w-none text-pretty md:text-lg md:leading-8";
+/** Büyük başlık: ana sayfa hero, bölüm başlıkları ve sayfa başlıkları */
+export const sectionHeadingClass = "heading max-w-3xl text-balance";
+
+export const pageHeadingClass = "page-title max-w-3xl text-balance";
+
+/** Başlığın altındaki giriş paragrafı */
+export const sectionLedeClass = "lede mt-6 max-w-2xl text-pretty";
 
 /** Bölüm gövdesi / tanım listesi değerleri */
 export const sectionBodyClass = "text-base leading-7 text-ink";
@@ -17,8 +21,7 @@ type SectionHeaderProps = {
   heading?: "h1" | "h2";
   variant?: "section" | "page";
   description?: string;
-  headingClassName?: string;
-  descriptionClassName?: string;
+  action?: ReactNode;
 };
 
 export function SectionHeader({
@@ -28,21 +31,19 @@ export function SectionHeader({
   heading = "h2",
   variant = "section",
   description,
-  headingClassName,
-  descriptionClassName,
+  action,
 }: SectionHeaderProps) {
   const Tag = heading;
-  const headingClass =
-    headingClassName ??
-    (variant === "page" ? "page-title mt-4" : "heading mt-4");
+  const headingClass = variant === "page" ? pageHeadingClass : sectionHeadingClass;
 
   return (
     <header>
       <p className="kicker">{kicker}</p>
-      <Tag id={id} className={headingClass}>{title}</Tag>
-      {description ? (
-        <p className={descriptionClassName ?? sectionLedeClass}>{description}</p>
-      ) : null}
+      <Tag id={id} className={`mt-4 ${headingClass}`}>
+        {title}
+      </Tag>
+      {description ? <p className={sectionLedeClass}>{description}</p> : null}
+      {action ? <div className="mt-8">{action}</div> : null}
     </header>
   );
 }

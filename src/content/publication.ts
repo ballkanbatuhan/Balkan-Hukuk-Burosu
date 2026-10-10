@@ -3,8 +3,7 @@ export const publication = {
   title: "Sosyal Medya Haberciliğinde Kişilik Hakkı İhlali",
   author: "Av. Zeynep Balkan",
   description:
-    "Dijital ortamda haberin dolaşım hızı arttıkça, kişilik hakkı üzerindeki baskı da daha görünür hale geldi. Bu kitap; kişilik hakkını, sosyal medya haberciliğini ve bu iki alan arasındaki çatışan değerleri birlikte ele alır. Amacı, mevcut hukuki çerçeveyi anlaşılır bir bütün içinde çözümlemektir.",
-  note: "Çalışma, kişilik hakkı ile sosyal medya haberciliği arasındaki gerilimi ve bu gerilimin hukuki çerçevesini sade bir dille ortaya koyar.",
+    "Dijitalleşen dünyada sosyal medya, haberlerin yayılma hızını artırırken aynı zamanda kişilik hakkıyla ilgili ciddi sorunları da beraberinde getirmiştir. Bu çerçevede, çalışma, kişilik hakkını, sosyal medya haberciliğini ve bu iki kavram arasındaki çatışan değerleri ele alarak mevcut hukuki çerçeveyi analiz etmeyi hedeflemektedir.",
   storeUrl:
     "https://www.adalet.com.tr/sosyal-medya-haberciliginde-kisilik-hakki-ihlali-31383",
 } as const;

@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { SitePage } from "@/components/site-page";
-import { formatPracticeNumber, practiceAreas } from "@/lib/content";
+import { formatPracticeNumber, office, practiceAreas } from "@/lib/content";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Faaliyet Alanları",
-  description:
-    "Balkan Hukuk Bürosu’nun çalışma alanları. Her dosya, kendi usulü ve koşulları içinde ele alınır.",
+  title: office.practiceTitle,
+  description: office.practiceIntro,
   path: "/faaliyet-alanlari",
   index: false,
 });
@@ -14,9 +13,9 @@ export const metadata = createMetadata({
 export default function PracticeAreasPage() {
   return (
     <SitePage
-      eyebrow="Çalışma"
-      title="Faaliyet Alanları"
-      description="Her dosya, ait olduğu hukuk alanının kendi usulü ve koşulları içinde ele alınır. Alan sayfalarının ayrıntılı metinleri hazırlanıyor."
+      eyebrow="Balkan Hukuk Bürosu"
+      title={office.practiceTitle}
+      description={office.practiceIntro}
     >
       <ol className="border-t border-line">
         {practiceAreas.map((area, index) => (

@@ -1,70 +1,35 @@
-import { EditorialImage } from "@/components/editorial-image";
-import { SectionHeader, sectionBlockSpacing, sectionLedeClass } from "@/components/section-header";
-import { media, testimonials } from "@/lib/content";
+import Image from "next/image";
+import { SectionHeader, sectionBlockSpacing } from "@/components/section-header";
+import { TestimonialCarousel } from "@/components/testimonial-carousel";
+import { media, office, testimonials } from "@/lib/content";
 
 export function Testimonials() {
-  const quotes = testimonials.slice(0, 3);
-
   return (
-    <section aria-labelledby="guven-baslik">
-      <div className="section shell">
-        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <SectionHeader
-              id="guven-baslik"
-              kicker="Müvekkillerimizden"
-              title={
-                <>
-                  Güven, yalnızca sonuçla değil;
-                  <span className="block">süreçle de kurulur.</span>
-                </>
-              }
-              headingClassName="heading mt-4 max-w-[18ch]"
-            />
-          </div>
-          <figure className="lg:col-span-5 lg:pt-2">
-            <EditorialImage
-              src={media.justice.src}
-              alt={media.justice.alt}
-              zoom
-              objectPosition="center 18%"
-              sizes="(min-width: 1024px) 28rem, 100vw"
-              className="aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-[4/5]"
-            />
-            <figcaption className="mt-3.5 kicker">Adalet</figcaption>
-          </figure>
-        </div>
+    <section aria-labelledby="guven-baslik" className="relative overflow-hidden bg-night text-night-text">
+      <Image
+        src={media.justice.src}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover object-[62%_18%]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-r from-night/84 via-night/70 to-night/58 lg:via-night/58 lg:to-night/32"
+      />
 
-        {quotes.length > 0 ? (
-          <ol className={`${sectionBlockSpacing} space-y-12 md:space-y-16`}>
-            {quotes.map((item, index) => (
-              <li
-                key={item.id}
-                className={
-                  index === 1 ? "lg:ml-[18%] lg:max-w-[40rem]" : "max-w-[46rem]"
-                }
-              >
-                <figure>
-                  <blockquote>
-                    <p className="quote text-ink">
-                      “{item.quote}”
-                    </p>
-                  </blockquote>
-                  <figcaption className="mt-6 kicker text-ink">
-                    {item.author}
-                    {item.context ? ` · ${item.context}` : null}
-                    {" · "}
-                    Google
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <p className={`${sectionLedeClass} ${sectionBlockSpacing}`}>
-            Müvekkil görüşleri, kaynakları doğrulandıktan sonra bu alanda paylaşılacak.
-          </p>
-        )}
+      <div className="section shell relative [&_.kicker]:text-[#e4d3b4]">
+        <SectionHeader
+          id="guven-baslik"
+          kicker="Balkan Hukuk Bürosu"
+          title={office.reviewsTitle}
+        />
+
+        {testimonials.length > 0 ? (
+          <div className={sectionBlockSpacing}>
+            <TestimonialCarousel items={testimonials} />
+          </div>
+        ) : null}
       </div>
     </section>
   );
