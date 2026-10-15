@@ -72,6 +72,15 @@ export function getPracticeArea(slug: string) {
   return practiceAreas.find((area) => area.slug === slug);
 }
 
+export function getRelatedPracticeAreas(slug: string, count = 3) {
+  const index = practiceAreas.findIndex((area) => area.slug === slug);
+  if (index < 0) return [];
+
+  return Array.from({ length: count }, (_, step) => {
+    return practiceAreas[(index + step + 1) % practiceAreas.length];
+  });
+}
+
 export function formatPracticeNumber(index: number) {
   return String(index + 1).padStart(2, "0");
 }

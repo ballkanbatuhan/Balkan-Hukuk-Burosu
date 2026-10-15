@@ -6,6 +6,8 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.balkanhukukburosu.com",
   locale: "tr_TR",
   copyrightYear: 2026,
+  /** Site haritasındaki son değişiklik. Her derlemede yenilenmez. */
+  contentUpdated: "2026-10-10",
   email: "avzeynepbalkan@gmail.com",
   phoneDisplay: "+90 539 604 11 31",
   phoneHref: "tel:+905396041131",
@@ -18,6 +20,11 @@ export const site = {
     district: "Beyoğlu",
     city: "İstanbul",
     postalCode: "34433",
+  },
+  /** Google Haritalar bağlantısındaki büro konumu. */
+  geo: {
+    latitude: 41.0339619,
+    longitude: 28.9803587,
   },
 } as const;
 

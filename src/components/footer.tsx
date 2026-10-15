@@ -42,9 +42,16 @@ export function Footer() {
         </nav>
       </div>
       <div className="border-t border-white/10">
-        <div className="shell flex flex-col gap-2 py-6 text-xs tracking-wide text-night-text/50 sm:flex-row sm:justify-between">
+        <div className="shell flex flex-col gap-2 py-6 text-xs tracking-wide text-night-text/50 sm:flex-row sm:items-end sm:justify-between">
           <p>{`© ${site.copyrightYear} ${site.name}. Tüm hakları saklıdır.`}</p>
-          <p>Beyoğlu / İstanbul</p>
+          <div className="flex flex-col gap-1 sm:items-end">
+            <p>
+              {site.address.street}, {site.address.district} / {site.address.city}
+            </p>
+            <a href={site.phoneHref} className="transition-colors hover:text-night-text">
+              {site.phoneDisplay}
+            </a>
+          </div>
         </div>
       </div>
     </footer>

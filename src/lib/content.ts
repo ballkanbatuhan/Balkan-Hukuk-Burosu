@@ -12,6 +12,7 @@ export { media } from "@/content/media";
 export {
   formatPracticeNumber,
   getPracticeArea,
+  getRelatedPracticeAreas,
   practiceAreas,
   practiceDescription,
 } from "@/content/practice-areas";

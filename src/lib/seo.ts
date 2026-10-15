@@ -50,10 +50,15 @@ export function createMetadata({
   };
 }
 
+export function officeJsonLdId() {
+  return `${site.url}/#hukuk-burosu`;
+}
+
 export function getLegalServiceJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "LegalService",
+    "@id": officeJsonLdId(),
     name: site.name,
     url: site.url,
     description: seoCopy.home,
@@ -68,6 +73,12 @@ export function getLegalServiceJsonLd() {
       postalCode: site.address.postalCode,
       addressCountry: "TR",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: site.geo.latitude,
+      longitude: site.geo.longitude,
+    },
+    hasMap: site.mapsHref,
     founder: {
       "@type": "Person",
       name: "Zeynep Balkan",
@@ -78,6 +89,24 @@ export function getLegalServiceJsonLd() {
       name: "İstanbul",
     },
     sameAs: [site.mapsHref],
+  };
+}
+
+export function getPracticeServiceJsonLd(area: { title: string; slug: string; description: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: area.title,
+    description: area.description,
+    url: absoluteUrl(`/faaliyet-alanlari/${area.slug}`),
+    serviceType: area.title,
+    areaServed: {
+      "@type": "City",
+      name: "İstanbul",
+    },
+    provider: {
+      "@id": officeJsonLdId(),
+    },
   };
 }
 
